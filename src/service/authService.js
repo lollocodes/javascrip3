@@ -27,7 +27,7 @@ async function register(credential) {
 }
 
 
-const isAuthenticated = () => sessionStorage.getItem('JWT_TOKEN') !== null;
+const isAuthenticated = () => localStorage.getItem('JWT_TOKEN') !== null;
 
 const authService = { authenticate, register, isAuthenticated };
 export default authService;

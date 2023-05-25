@@ -6,20 +6,19 @@ import { useNavigate } from 'react-router-dom';
 
 const BooksTable = () => {
     const [books, setbooks] = useState([]);
-    const navigate = useNavigate();
 
     useEffect(() => {
 
         const getAllBooks = async () => {
-            let resp = await userService.getUser();
-            let user = await resp.json()
+
             // If user is not authenticated fetch books
             if(authService.isAuthenticated()) {
+                console.log("user is logged in")
+            } else {
+                console.log("User is not logged in", authService.isAuthenticated())
                 let res = await userService.getBooks();
                 setbooks(res)
                 console.log(books)
-            } else if(authService.isAuthenticated()) {
-                console.log(authService.isAuthenticated())
             }
         }
 
@@ -30,11 +29,14 @@ const BooksTable = () => {
   return (
     <div>
         <table>
-            <tr>
-                <th>Book title</th>
-                <th>Book author</th>
-                <th>Availability</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Book title</th>
+                    <th>Book author</th>
+                    <th>Availability</th>
+                </tr>
+            </thead>
+            <tbody>
                 {books.map((book, index) => {
                     return (
                     <Book
@@ -43,6 +45,7 @@ const BooksTable = () => {
                     />
                     );
                 })}
+            </tbody>
         </table>
         
     </div>

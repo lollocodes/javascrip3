@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import userService from '../service/userService';
 
-const Header = () => {
-  const [username, setUsername] = useState('');
-  const [role, setRole] = useState('')
+const Header = ({user}) => {
+
 
   // useEffect(() => {
   //   setUsername(userService.getUsername());
@@ -12,7 +11,7 @@ const Header = () => {
   return (
     <header>
         <h1>Bookster website</h1>
-        <p>Browsing as {role} {username}</p>
+        <p>Browsing as {user.role} {user.username}</p>
         <button>Sign out</button>
     </header>
   )

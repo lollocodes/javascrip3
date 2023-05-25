@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import CredentialComponent from '../components/CredentialComponent.js';
 import authService from '../service/authService.js';
@@ -10,6 +10,13 @@ const Login = () => {
     const [credential, setCredential] = useState({username: '', password: ''});
     const [infoMessage, setInfoMessage] = useState('');
     const navigate = useNavigate();
+
+  useEffect(() => {
+    if(authService.isAuthenticated()) {
+      console.log("You are already logged in")
+      navigate("/user")
+    }
+  }, []);
 
     const submitHandler = async (event) => {
       event.preventDefault();
@@ -23,7 +30,7 @@ const Login = () => {
         let data = await res.json();
         setInfoMessage(data.message);
         memoryService.saveLocalValue("JWT_TOKEN", data.accessToken);
-  
+
         setTimeout(() => navigate("/user"), 1000);
       }
     }

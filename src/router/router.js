@@ -9,10 +9,6 @@ const routes = [
     element: <h2>Path not found</h2>
   },
   {
-    path: "/login",
-    element: <Login />
-  },
-  {
     path: "/register",
     element: <Register />
   },
@@ -21,8 +17,12 @@ const routes = [
     element: <UserView/>
   },
   {
-    path: "/",
+    path: "/guest",
     element: <GuestView />
+  },
+  {
+    path: "/",
+    element: <Login />
   }
 ];
 
