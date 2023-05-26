@@ -36,6 +36,13 @@ async function getBooks() {
   return data;
 }
 
+async function addBook(body) {
+  let resp = await performRequest("http://127.0.0.1:3000/library/user/books", "POST", body);
+  let data = await resp.json();
+
+  return data;
+}
+
 async function getUser() {
   let resp = await performRequest("http://127.0.0.1:3000/library/profile", "GET");
 
@@ -77,5 +84,5 @@ function getUsername() {
 }
 
 
-const userService = { getBooks, getUsername, getUser };
+const userService = { getBooks, getUsername, getUser, addBook };
 export default userService;

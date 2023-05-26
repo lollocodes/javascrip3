@@ -14,11 +14,11 @@ const BooksTable = () => {
             // If user is not authenticated fetch books
             if(authService.isAuthenticated()) {
                 console.log("user is logged in")
-            } else {
-                console.log("User is not logged in", authService.isAuthenticated())
                 let res = await userService.getBooks();
                 setbooks(res)
-                console.log(books)
+                console.log("BOOKS", books)
+            } else {
+                console.log("User is not logged in", authService.isAuthenticated())
             }
         }
 
@@ -34,6 +34,7 @@ const BooksTable = () => {
                     <th>Book title</th>
                     <th>Book author</th>
                     <th>Availability</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>

@@ -17,15 +17,16 @@ const UserView = () => {
         }
       }, []);
 
-    // useEffect(() => {
-    //     const getUser = async () => {
-    //         let resp = await userService.getUser();
-    //         let userData = await resp.json()
-    //         setUser(userData.user)
-    //     }
-    //     getUser()
+    useEffect(() => {
+        const getUser = async () => {
+            let resp = await userService.getUser();
+            let userData = await resp.json()
+            setUser(userData.user)
+            console.log(user)
+        }
+        getUser()
 
-    //   }, []);
+      }, []);
 
   return (
     <>
