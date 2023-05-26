@@ -6,13 +6,16 @@ import { useNavigate } from 'react-router-dom';
 import userService from '../service/userService.js';
 
 const UserView = () => {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const [user, setUser] = useState('');
       
     // If a user is not signed in redirect to guest view
-    // if(!authService.isAuthenticated()) {
-    //     navigate("/")
-    // }
+    useEffect(() => {
+        if(!authService.isAuthenticated()) {
+          console.log("You are not logged in")
+          navigate("/")
+        }
+      }, []);
 
     // useEffect(() => {
     //     const getUser = async () => {
@@ -21,13 +24,12 @@ const UserView = () => {
     //         setUser(userData.user)
     //     }
     //     getUser()
-        
-        
+
     //   }, []);
 
   return (
     <>
-    <h1 data-testid="profile-header">User Page</h1>
+    <h1 data-testid="user-component">User Page</h1>
         {/* <Header user={user}/>   */}
         <BooksTable />
     </>

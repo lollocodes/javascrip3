@@ -40,7 +40,7 @@ const Login = () => {
     }
   
     return (
-      <div>
+      <div data-testid="user-component">
         <form onSubmit={submitHandler}>
           <h2>Login</h2>
           <CredentialComponent onTextChange={handleChange} />
