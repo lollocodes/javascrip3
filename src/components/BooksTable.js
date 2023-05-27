@@ -3,26 +3,39 @@ import userService from '../service/userService.js';
 import Book from './Book.js';
 import authService from '../service/authService.js';
 import { useNavigate } from 'react-router-dom';
+import User from './User.js';
+import adminService from '../service/adminService.js'
 
 const BooksTable = () => {
     const [books, setbooks] = useState([]);
-
+    const [users, setUsers] = useState([]);
+    const [user, setUser] = useState();
+console.log(user)
     useEffect(() => {
 
         const getAllBooks = async () => {
+            let res = await userService.getBooks();
+            setbooks(res)
+            console.log("BOOKS", books)
+        }
+        getAllBooks()
 
-            // If user is not authenticated fetch books
-            if(authService.isAuthenticated()) {
-                console.log("user is logged in")
-                let res = await userService.getBooks();
-                setbooks(res)
-                console.log("BOOKS", books)
-            } else {
-                console.log("User is not logged in", authService.isAuthenticated())
+        const getUser = async () => {
+            let resp = await userService.getUser();
+            let userData = await resp.json()
+            setUser(userData.user)
+            console.log("User in userview is: ", user)
+        }
+        getUser()
+
+        const getAllUsers = async () => {
+            if (user) {
+                let res = await adminService.getUsers();
+                setUsers(res)
+                console.log("USERS", users)
             }
         }
-
-        getAllBooks()
+        getAllUsers()
 
     }, []);
 
@@ -43,6 +56,28 @@ const BooksTable = () => {
                     <Book
                         key={book.title} 
                         book={book}
+                        user={user}
+                    />
+                    );
+                })}
+            </tbody>
+        </table>
+        <hr />
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>Purchase</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {users.map((user, index) => {
+                    return (
+                    <User
+                        key={user.username} 
+                        user={user}
                     />
                     );
                 })}

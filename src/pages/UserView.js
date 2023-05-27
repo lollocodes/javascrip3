@@ -22,7 +22,7 @@ const UserView = () => {
             let resp = await userService.getUser();
             let userData = await resp.json()
             setUser(userData.user)
-            console.log(user)
+            console.log("User in userview is: ", user)
         }
         getUser()
 
@@ -30,9 +30,9 @@ const UserView = () => {
 
   return (
     <>
-    <h1 data-testid="user-component">User Page</h1>
+        <h1 data-testid="user-component">User Page</h1>
         {/* <Header user={user}/>   */}
-        <BooksTable />
+        <BooksTable user={user}/>
     </>
   )
 }

@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import userService from '../service/userService.js';
+import adminService from '../service/adminService.js';
 
-const Book = ({book}) => {
+const Book = ({book, user}) => {
   const [count, setCount] = useState(0);
   const [confirmationMessage, setConfirmationMessage] = useState("")
 
@@ -28,18 +29,44 @@ const Book = ({book}) => {
     // setConfirmationMessage(res.message)
     // alert(confirmationMessage)
   }
-  
+
+  // const promoteUser = async () => {
+  //   let res = await adminService.promoteUser(user.username)
+  // }
+  // const deleteUser = async () => {
+  //   let res = await adminService.deleteUser(user.username)
+  // }
+  const editBook = async () => {
+    let res = await adminService.editBook(book)
+    console.log(res)
+  }
+  const deleteBook = async () => {
+    let res = await adminService.deleteBook(book)
+    console.log(res)
+  }
+
   return (
     <tr>
         <td>{book.title}</td>
         <td>{book.author}</td>
         <td>{ book.quantity == 0 ? "Out of stock" : book.quantity}</td>
-        <td>
-          <button onClick={decrement}>-</button>
-          {count}
-          <button onClick={increment}>+</button>
-          <button onClick={handleClick}>Order</button>
-        </td>
+        { 
+          user?.role=="USER" ? 
+          <td>
+            <button onClick={decrement}>-</button>
+            {count}
+            <button onClick={increment}>+</button>
+            <button onClick={handleClick}>Order</button>
+          </td>
+          : user.role=="ADMIN" ?
+          <td>
+            <button onClick={editBook}>Edit</button>
+            <button onClick={deleteBook}>Delete</button>
+          </td>
+          :
+          <></>
+        }
+        
     </tr>
   )
 }
