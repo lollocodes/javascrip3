@@ -45,29 +45,9 @@ async function addBook(body) {
 
 async function getUser() {
   let resp = await performRequest("http://127.0.0.1:3000/library/profile", "GET");
-
-  return resp;
+  let data = await resp.json();
+  return data;
 }
-
-// async function getDebitCard() {
-//   let resp = await performRequest("http://127.0.0.1:4000/user/debitCard", "GET");
-//   let data = await resp.json()
-
-//   return data.debitCard;
-// }
-
-// async function getAddress() {
-//   let resp = await performRequest("http://127.0.0.1:4000/user/address", "GET");
-//   let data = await resp.json();
-
-//   return data.address;
-// }
-
-// async function getHistory() {
-//   let resp = await performRequest("http://127.0.0.1:4000/user/history", "GET");
-
-//   return resp;
-// }
 
 /* helper function (not exported), used to parse local jwt token from localStorage */
 function getLocalJWTData() {

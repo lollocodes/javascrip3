@@ -56,14 +56,14 @@ async function getUsers() {
   }
 
 async function promoteUser(body) {
-  let resp = await performRequest("http://127.0.0.1:3000/library/admin/users", "PUT", body);
+  let resp = await performRequest("http://127.0.0.1:3000/admin/users", "PUT", body);
   let data = await resp.json();
 
   return data;
 }
 
 async function deleteUser(username) {
-  let resp = await performRequest("http://127.0.0.1:3000/library/admin/users", "DELETE", username);
+  let resp = await performRequest("http://127.0.0.1:3000/admin/users", "DELETE", username);
   let data = await resp.json();
 
   return data;

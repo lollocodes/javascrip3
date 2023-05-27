@@ -18,21 +18,31 @@ const UserView = () => {
       }, []);
 
     useEffect(() => {
-        const getUser = async () => {
-            let resp = await userService.getUser();
-            let userData = await resp.json()
-            setUser(userData.user)
-            console.log("User in userview is: ", user)
-        }
         getUser()
-
       }, []);
+
+    const getUser = async () => {
+      try {
+        let res = await userService.getUser();
+        console.log("USER", res.user);
+        
+        if (res.user) {
+          setUser(res.user);
+        } else {
+          // Handle the case when user data is not available
+          console.log("User data not found.");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
   return (
     <>
         <h1 data-testid="user-component">User Page</h1>
-        {/* <Header user={user}/>   */}
-        <BooksTable user={user}/>
+        <Header user={user}/>
+        {user &&  <BooksTable user={user}/>}
+       
     </>
   )
 }

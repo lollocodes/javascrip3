@@ -30,12 +30,6 @@ const Book = ({book, user}) => {
     // alert(confirmationMessage)
   }
 
-  // const promoteUser = async () => {
-  //   let res = await adminService.promoteUser(user.username)
-  // }
-  // const deleteUser = async () => {
-  //   let res = await adminService.deleteUser(user.username)
-  // }
   const editBook = async () => {
     let res = await adminService.editBook(book)
     console.log(res)
@@ -51,7 +45,7 @@ const Book = ({book, user}) => {
         <td>{book.author}</td>
         <td>{ book.quantity == 0 ? "Out of stock" : book.quantity}</td>
         { 
-          user?.role=="USER" ? 
+          user.role=="USER" || user.role=="ADMIN" ? 
           <td>
             <button onClick={decrement}>-</button>
             {count}

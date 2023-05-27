@@ -6,38 +6,28 @@ import { useNavigate } from 'react-router-dom';
 import User from './User.js';
 import adminService from '../service/adminService.js'
 
-const BooksTable = () => {
+const BooksTable = ({user}) => {
     const [books, setbooks] = useState([]);
     const [users, setUsers] = useState([]);
-    const [user, setUser] = useState();
-console.log(user)
+
     useEffect(() => {
-
-        const getAllBooks = async () => {
-            let res = await userService.getBooks();
-            setbooks(res)
-            console.log("BOOKS", books)
-        }
         getAllBooks()
-
-        const getUser = async () => {
-            let resp = await userService.getUser();
-            let userData = await resp.json()
-            setUser(userData.user)
-            console.log("User in userview is: ", user)
-        }
-        getUser()
-
-        const getAllUsers = async () => {
-            if (user) {
-                let res = await adminService.getUsers();
-                setUsers(res)
-                console.log("USERS", users)
-            }
-        }
         getAllUsers()
-
     }, []);
+
+    const getAllBooks = async () => {
+        let res = await userService.getBooks();
+        setbooks(res)
+        console.log("BOOKS", books)
+    }
+
+    const getAllUsers = async () => {
+        if (user.role === "ADMIN") {
+            let res = await adminService.getUsers();
+            setUsers(res)
+            console.log("USERS", users)
+        }
+    }
 
   return (
     <div>
