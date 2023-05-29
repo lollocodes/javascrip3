@@ -12,8 +12,10 @@ import AddBookModal from './AddBookModal.js';
 const BooksTable = ({user}) => {
     const [books, setbooks] = useState([]);
     const [filteredBooks, setFilteredBooks] = useState([]);
+    const [filteredUsers, setFilteredUsers] = useState([]);
     const [users, setUsers] = useState([]);
-    const [searchField, setSearchField] = useState("");
+    const [searchFieldBooks, setSearchFieldBooks] = useState("");
+    const [searchFieldUsers, setSearchFieldUsers] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
 
 
@@ -30,6 +32,7 @@ const BooksTable = ({user}) => {
             if (res.books) {
                 console.log("kankefjrkbfekr")
                 setbooks(res.books)
+                setFilteredBooks(res.books)
             } else {
               // Handle the case when user data is not available
               console.log("User data not found.");
@@ -48,6 +51,7 @@ const BooksTable = ({user}) => {
                 if (res.users) {
                     console.log("kankefjrkbfekr")
                     setUsers(res.users)
+                    setFilteredUsers(res.users)
                 } else {
                   // Handle the case when user data is not available
                   console.log("User data not found.");
@@ -59,12 +63,18 @@ const BooksTable = ({user}) => {
         
     }
 
-    const handleSearch = () => {
-        userService.search("books", searchField).then(data => {
-            console.log(data)
-            setFilteredBooks(data)
-        })
-    }
+    const handleSearch = (e) => {
+        const query = e.target.value;
+        setSearchFieldBooks(query);
+        if (query === '') {
+            setFilteredBooks(books); // Show the original book list when query is empty
+        } else {
+            userService.search("books", searchFieldBooks).then(data => {
+                console.log(data)
+                setFilteredBooks(data)
+            })
+        }
+    } 
 
     const handleSave = (book) => {
         console.log(book)
@@ -84,40 +94,17 @@ const BooksTable = ({user}) => {
 
   return (
     <div>
-        <input 
-            className="search_input"
-            type = "text" 
-            placeholder = "Search books" 
-            onChange={(e) => setSearchField(e.target.value)}
-            onKeyDown={(e) => {if (e.key === "Enter") {handleSearch()}}}
-            value={searchField}
+        <input
+            type="text"
+            name="searchBooks"
+            value={searchFieldBooks}
+            onChange={handleSearch}
+            placeholder="Search for a book"
         />
         <button onClick={openModal}>Add book</button>
         <AddBookModal isOpen={isModalOpen} onClose={closeModal} onSave={handleSave} />
-        {searchField ? 
+        
         <table>
-        <thead>
-            <tr>
-                <th>Book title</th>
-                <th>Book author</th>
-                <th>Availability</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            {filteredBooks.map((book, index) => {
-                return (
-                <Book
-                    key={book.title} 
-                    book={book}
-                    user={user}
-                />
-                );
-            })}
-        </tbody>
-    </table>
-    :
-    <table>
             <thead>
                 <tr>
                     <th>Book title</th>
@@ -127,7 +114,7 @@ const BooksTable = ({user}) => {
                 </tr>
             </thead>
             <tbody>
-                {books.map((book, index) => {
+                {filteredBooks.map((book, index) => {
                     return (
                     <Book
                         key={book.title} 
@@ -138,9 +125,8 @@ const BooksTable = ({user}) => {
                 })}
             </tbody>
         </table>
-    }
+    
         <hr />
-        <Search placeholder="Search user" endpoint="users"/>
         <table>
             <thead>
                 <tr>

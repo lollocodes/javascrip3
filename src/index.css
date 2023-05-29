@@ -9,7 +9,7 @@ body {
 }
 
 h1 {
-  color: rgb(148, 151, 189);
+  color: rgb(60, 66, 146);
   text-align: center;
 
 
@@ -17,8 +17,8 @@ h1 {
 
 p {
 
-  font-size: 20px;
-  background-color: rgb(148, 151, 189);;
+  font-size: 15px;
+  text-align: right;
   padding: 1em;
 
 }
