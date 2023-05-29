@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import userService from '../service/userService.js';
 import adminService from '../service/adminService.js';
+import EditBookModal from './EditBookModal.js';
 
 const Book = ({book, user}) => {
   const [count, setCount] = useState(0);
   const [confirmationMessage, setConfirmationMessage] = useState("")
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editedBook, setEditedBook] = useState(book);
 
   const increment = () => {
     if (count < book.quantity) {
@@ -30,14 +33,28 @@ const Book = ({book, user}) => {
     // alert(confirmationMessage)
   }
 
-  const editBook = async () => {
-    let res = await adminService.editBook(book)
-    console.log(res)
-  }
   const deleteBook = async () => {
-    let res = await adminService.deleteBook(book.title)
+    let res = await adminService.deleteBook(book)
     console.log(res)
   }
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSave = (updatedBook) => {
+    // Perform save operation
+    console.log(updatedBook)
+    console.log(book.title)
+    const body = { previous: {title: book.title}, current: updatedBook }
+    console.log(body)
+    let res = adminService.editBook(body);
+    console.log(res)
+  };
 
   return (
     <tr>
@@ -58,7 +75,8 @@ const Book = ({book, user}) => {
         }
         {  user.role=="ADMIN" ?
           <td>
-            <button onClick={editBook}>Edit</button>
+            <button onClick={openModal}>Edit</button>
+            <EditBookModal isOpen={isModalOpen} onClose={closeModal} book={editedBook} onSave={handleSave} />
             <button onClick={deleteBook}>Delete</button>
           </td>
           : <></>}

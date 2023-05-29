@@ -51,11 +51,13 @@ async function getUser() {
 }
 
 async function search(endpoint, query) {
-    let res = performRequest(`http://127.0.0.1:3000/library/${endpoint}/?search=${query}`, "GET");
-    console.log(res)
-    let data = await res.json();
-    
-    return data
+    let res = await performRequest(`http://127.0.0.1:3000/library/${endpoint}/search?q=${query}`, "GET");
+
+    if (res.status === 200 ) {
+      console.log(res)
+      let data = await res.json();
+      return data
+    }
   }
 
 

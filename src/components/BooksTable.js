@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import User from './User.js';
 import adminService from '../service/adminService.js'
 import Search from './Search.js'
+import AddBookModal from './AddBookModal.js';
 
 
 const BooksTable = ({user}) => {
@@ -13,6 +14,7 @@ const BooksTable = ({user}) => {
     const [filteredBooks, setFilteredBooks] = useState([]);
     const [users, setUsers] = useState([]);
     const [searchField, setSearchField] = useState("");
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
 
     useEffect(() => {
@@ -64,6 +66,22 @@ const BooksTable = ({user}) => {
         })
     }
 
+    const handleSave = (book) => {
+        console.log(book)
+        const body = { author: book.author, title: book.title, quantity: book.quantity }
+        let res = adminService.addBook(body);
+        console.log(res)
+      };
+
+    const openModal = () => {
+        setIsModalOpen(true);
+      };
+    
+    const closeModal = () => {
+       setIsModalOpen(false);
+    };
+
+
   return (
     <div>
         <input 
@@ -74,7 +92,32 @@ const BooksTable = ({user}) => {
             onKeyDown={(e) => {if (e.key === "Enter") {handleSearch()}}}
             value={searchField}
         />
+        <button onClick={openModal}>Add book</button>
+        <AddBookModal isOpen={isModalOpen} onClose={closeModal} onSave={handleSave} />
+        {searchField ? 
         <table>
+        <thead>
+            <tr>
+                <th>Book title</th>
+                <th>Book author</th>
+                <th>Availability</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {filteredBooks.map((book, index) => {
+                return (
+                <Book
+                    key={book.title} 
+                    book={book}
+                    user={user}
+                />
+                );
+            })}
+        </tbody>
+    </table>
+    :
+    <table>
             <thead>
                 <tr>
                     <th>Book title</th>
@@ -95,6 +138,7 @@ const BooksTable = ({user}) => {
                 })}
             </tbody>
         </table>
+    }
         <hr />
         <Search placeholder="Search user" endpoint="users"/>
         <table>

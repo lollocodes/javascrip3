@@ -62,22 +62,29 @@ async function promoteUser(body) {
   return data;
 }
 
-async function deleteUser(username) {
-  let resp = await performRequest("http://127.0.0.1:3000/admin/users", "DELETE", username);
+async function deleteUser(body) {
+  let resp = await performRequest("http://127.0.0.1:3000/admin/users", "DELETE", body);
   let data = await resp.json();
 
   return data;
 }
 
 async function editBook(body) {
-    let resp = await performRequest("http://127.0.0.1:3000/library/admin/books", "PUT", body);
+    let resp = await performRequest("http://127.0.0.1:3000/admin/books", "PUT", body);
     let data = await resp.json();
   
     return data;
 }
 
+async function addBook(body) {
+  let resp = await performRequest("http://127.0.0.1:3000/admin/books", "POST", body);
+  let data = await resp.json();
+
+  return data;
+}
+
 async function deleteBook(body) {
-    let resp = await performRequest("http://127.0.0.1:3000/library/admin/books", "DELETE", body);
+    let resp = await performRequest("http://127.0.0.1:3000/admin/books", "DELETE", body);
     let data = await resp.json();
   
     return data;
@@ -96,5 +103,5 @@ function getLocalJWTData() {
 
 
 
-const userService = { promoteUser, deleteUser, getUsers, editBook, deleteBook };
+const userService = { promoteUser, deleteUser, getUsers, editBook, deleteBook, addBook };
 export default userService;

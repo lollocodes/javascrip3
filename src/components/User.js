@@ -10,12 +10,11 @@ const User = ({user}) => {
         }
     }
 
-    const deleteUser = async () => {
-        let res = await adminService.deleteUser();
-        if (res.status === 200) {
-            alert(res.message)
-        }
-    }
+
+    const deleteUser  = async () => {
+        let res = await adminService.deleteUser(user)
+        console.log(res)
+      }
 
   return (
     <tr>

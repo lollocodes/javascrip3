@@ -5,9 +5,61 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(255, 255, 255);
 }
+
+h1 {
+  color: rgb(148, 151, 189);
+  text-align: center;
+
+
+}
+
+p {
+
+  font-size: 20px;
+  background-color: rgb(148, 151, 189);;
+  padding: 1em;
+
+}
+
+
+td {
+  background-color: rgb(148, 151, 189);
+  padding: 0.3em;
+  
+
+}
+
+button {
+  color: rgb(10, 9, 9);
+  margin: 0.3em;
+  height: 30px;
+  border-radius: 10%;
+  font-size: 20px;
+  
+  
+}
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.modal {
+  display: none;
+}
+
+.open {
+  display: block;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background-color: white;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
