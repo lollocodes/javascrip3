@@ -36,7 +36,7 @@ async function getBooks() {
   return data;
 }
 
-async function addBook(body) {
+async function orderBook(body) {
   let resp = await performRequest("http://127.0.0.1:3000/library/user/books", "POST", body);
   let data = await resp.json();
 
@@ -46,8 +46,18 @@ async function addBook(body) {
 async function getUser() {
   let resp = await performRequest("http://127.0.0.1:3000/library/profile", "GET");
   let data = await resp.json();
+
   return data;
 }
+
+async function search(endpoint, query) {
+    let res = performRequest(`http://127.0.0.1:3000/library/${endpoint}/?search=${query}`, "GET");
+    console.log(res)
+    let data = await res.json();
+    
+    return data
+  }
+
 
 /* helper function (not exported), used to parse local jwt token from localStorage */
 function getLocalJWTData() {
@@ -59,10 +69,7 @@ function getLocalJWTData() {
   return JSON.parse(payloadData);
 }
 
-function getUsername() {
-  return getLocalJWTData().username;
-}
 
 
-const userService = { getBooks, getUsername, getUser, addBook };
+const userService = { getBooks, getUser, addBook: orderBook, search };
 export default userService;

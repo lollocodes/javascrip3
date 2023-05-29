@@ -35,7 +35,7 @@ const Book = ({book, user}) => {
     console.log(res)
   }
   const deleteBook = async () => {
-    let res = await adminService.deleteBook(book)
+    let res = await adminService.deleteBook(book.title)
     console.log(res)
   }
 
@@ -52,14 +52,16 @@ const Book = ({book, user}) => {
             <button onClick={increment}>+</button>
             <button onClick={handleClick}>Order</button>
           </td>
-          : user.role=="ADMIN" ?
+          :
+          <></>
+          
+        }
+        {  user.role=="ADMIN" ?
           <td>
             <button onClick={editBook}>Edit</button>
             <button onClick={deleteBook}>Delete</button>
           </td>
-          :
-          <></>
-        }
+          : <></>}
         
     </tr>
   )
