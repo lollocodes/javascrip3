@@ -15,11 +15,22 @@ h1 {
 
 }
 
+input {
+  margin: 0 auto;
+  display: block;
+
+
+}
+
 p {
 
   font-size: 15px;
   text-align: right;
-  padding: 1em;
+  
+
+}
+
+header {
 
 }
 
@@ -37,10 +48,19 @@ button {
   height: 30px;
   border-radius: 10%;
   font-size: 20px;
-  
-  
 }
 
+/* .signout-btn {
+  float: right;
+} */
+
+thead {
+  background-color: #5c63c5;
+}
+
+th {
+  padding: 1em;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

@@ -5,19 +5,19 @@ import authService from '../service/authService.js';
 import { useNavigate } from 'react-router-dom';
 import User from './User.js';
 import adminService from '../service/adminService.js'
-import Search from './Search.js'
 import AddBookModal from './AddBookModal.js';
-
 
 const BooksTable = ({user}) => {
     const [books, setbooks] = useState([]);
     const [filteredBooks, setFilteredBooks] = useState([]);
-    const [filteredUsers, setFilteredUsers] = useState([]);
     const [users, setUsers] = useState([]);
     const [searchFieldBooks, setSearchFieldBooks] = useState("");
-    const [searchFieldUsers, setSearchFieldUsers] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [activeTab, setActiveTab] = useState('users');
 
+    const handleTabChange = (tab) => {
+        setActiveTab(tab);
+    };
 
     useEffect(() => {
         getAllBooks()
@@ -26,15 +26,11 @@ const BooksTable = ({user}) => {
 
     const getAllBooks = async () => {
         try {
-            let res = await userService.getBooks();
-            console.log("USER", res.user);
-            
+            let res = await userService.getBooks();            
             if (res.books) {
-                console.log("kankefjrkbfekr")
                 setbooks(res.books)
                 setFilteredBooks(res.books)
             } else {
-              // Handle the case when user data is not available
               console.log("User data not found.");
             }
           } catch (error) {
@@ -46,14 +42,11 @@ const BooksTable = ({user}) => {
         if (user.role === "ADMIN") {
             try {
                 let res = await adminService.getUsers();
-                console.log("USER", res.user);
+                console.log("USER", res);
                 
                 if (res.users) {
-                    console.log("kankefjrkbfekr")
                     setUsers(res.users)
-                    setFilteredUsers(res.users)
                 } else {
-                  // Handle the case when user data is not available
                   console.log("User data not found.");
                 }
               } catch (error) {
@@ -67,7 +60,7 @@ const BooksTable = ({user}) => {
         const query = e.target.value;
         setSearchFieldBooks(query);
         if (query === '') {
-            setFilteredBooks(books); // Show the original book list when query is empty
+            setFilteredBooks(books);
         } else {
             userService.search("books", searchFieldBooks).then(data => {
                 console.log(data)
@@ -77,7 +70,6 @@ const BooksTable = ({user}) => {
     } 
 
     const handleSave = (book) => {
-        console.log(book)
         const body = { author: book.author, title: book.title, quantity: book.quantity }
         let res = adminService.addBook(body);
         console.log(res)
@@ -94,40 +86,60 @@ const BooksTable = ({user}) => {
 
   return (
     <div>
-        <input
-            type="text"
-            name="searchBooks"
-            value={searchFieldBooks}
-            onChange={handleSearch}
-            placeholder="Search for a book"
-        />
-        <button onClick={openModal}>Add book</button>
-        <AddBookModal isOpen={isModalOpen} onClose={closeModal} onSave={handleSave} />
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Book title</th>
-                    <th>Book author</th>
-                    <th>Availability</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {filteredBooks.map((book, index) => {
-                    return (
-                    <Book
-                        key={book.title} 
-                        book={book}
-                        user={user}
-                    />
-                    );
-                })}
-            </tbody>
-        </table>
-    
-        <hr />
-        <table>
+
+        <div>
+            <div className="tab-buttons">
+                <button
+                className={activeTab === 'users' ? 'active' : ''}
+                onClick={() => handleTabChange('users')}
+                >
+                Users
+                </button>
+                <button
+                className={activeTab === 'books' ? 'active' : ''}
+                onClick={() => handleTabChange('books')}
+                >
+                Books
+                </button>
+            </div>
+
+            {activeTab === 'books' ? 
+            <>
+                <input
+                    type="text"
+                    name="searchBooks"
+                    value={searchFieldBooks}
+                    onChange={handleSearch}
+                    placeholder="Search for a book"
+                />
+                <button onClick={openModal}>Add book</button>
+                <AddBookModal isOpen={isModalOpen} onClose={closeModal} onSave={handleSave} />
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Book title</th>
+                            <th>Book author</th>
+                            <th>Availability</th>
+                            <th>Order</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {filteredBooks.map((book, index) => {
+                            return (
+                            <Book
+                                key={book.title} 
+                                book={book}
+                                user={user}
+                            />
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </>
+            
+     : 
+     <table>
             <thead>
                 <tr>
                     <th>Username</th>
@@ -147,6 +159,12 @@ const BooksTable = ({user}) => {
                 })}
             </tbody>
         </table>
+        }
+        </div>
+
+        
+        <hr />
+        
     </div>
   )
 }

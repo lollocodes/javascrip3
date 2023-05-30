@@ -55,6 +55,13 @@ async function getUsers() {
     return data;
   }
 
+async function getUser(username) {
+    let resp = await performRequest("http://127.0.0.1:3000/admin/users", "GET", username);
+    let data = await resp.json();
+
+    return data;
+  }
+
 async function promoteUser(body) {
   let resp = await performRequest("http://127.0.0.1:3000/admin/users", "PUT", body);
   let data = await resp.json();
@@ -103,5 +110,5 @@ function getLocalJWTData() {
 
 
 
-const userService = { promoteUser, deleteUser, getUsers, editBook, deleteBook, addBook };
+const userService = { promoteUser, deleteUser, getUsers, getUser, editBook, deleteBook, addBook };
 export default userService;

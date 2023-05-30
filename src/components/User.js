@@ -10,20 +10,19 @@ const User = ({user}) => {
         }
     }
 
-
     const deleteUser  = async () => {
         let res = await adminService.deleteUser(user)
         console.log(res)
-      }
+    } 
 
   return (
     <tr>
         <td>{user.username}</td>
         <td>{user.role}</td>
-        <td>{user.purchase}</td>
+        <td>{user.purchases?.length}</td>
         <td>
-            {user.role == "ADMIN" ? <button disabled>Promote</button> : <button onClick={() => promoteUser(user.username)}>Promote</button>}
-            <button onClick={deleteUser}>Delete</button>
+            {user.role === "ADMIN" ? <button disabled>Promote</button> : <button onClick={() => promoteUser(user.username)}>Promote</button>}
+            <button className='delete-btn' data-testid="delete-btn" onClick={deleteUser}>Delete</button>
         </td>
     </tr>
   )

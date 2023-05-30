@@ -46,7 +46,8 @@ async function orderBook(body) {
 async function getUser() {
   let resp = await performRequest("http://127.0.0.1:3000/library/profile", "GET");
   let data = await resp.json();
-
+  
+  console.log(data)
   return data;
 }
 
