@@ -39,9 +39,10 @@ const UserView = () => {
 
   return (
     <>
-        <h1 data-testid="user-component">User Page</h1>
         <Header user={user}/>
-        {user &&  <BooksTable user={user}/>}
+        <div className="container">
+          {user &&  <BooksTable user={user}/>}
+        </div>
        
     </>
   )

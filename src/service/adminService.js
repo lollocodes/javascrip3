@@ -64,9 +64,13 @@ async function getUser(username) {
 
 async function promoteUser(body) {
   let resp = await performRequest("http://127.0.0.1:3000/admin/users", "PUT", body);
-  let data = await resp.json();
+  console.log(resp.status)
 
-  return data;
+  if (resp.status === 200) {
+    let data = await resp.json();
+    return data;
+  }
+
 }
 
 async function deleteUser(body) {

@@ -1,14 +1,14 @@
 export default function CredentialComponent({onTextChange}) {
     return (
       <div>
-        <p>
+        <div className="input-container">
           <label>Username</label>
           <input name="username" onChange={e => onTextChange(e.target)} type="text" />
-        </p>
-        <p>
+        </div>
+        <div className="input-container">
           <label>Password</label>
           <input name="password" onChange={e => onTextChange(e.target)} type="password" />
-        </p>
+        </div>
       </div>
     )
   }

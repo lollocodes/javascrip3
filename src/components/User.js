@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import adminService from '../service/adminService.js';
+import DeleteModal from './DeleteModal.js';
 
 const User = ({user}) => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [action, setAction] = useState();
 
-    const promoteUser = async (username) => {
-        let res = await adminService.promoteUser({username: username});
-        if (res.status === 200) {
-            alert(res.message)
-        }
+    const promoteUser = async () => {
+        console.log(user.username)
+        let res = await adminService.promoteUser({username: user.username});
+        console.log(res)
     }
 
     const deleteUser  = async () => {
@@ -15,14 +17,29 @@ const User = ({user}) => {
         console.log(res)
     } 
 
+    const openModal = (btn) => {
+        setIsModalOpen(true);
+        setAction(btn)
+      };
+    
+      const closeModal = () => {
+        setIsModalOpen(false);
+      };
+
   return (
     <tr>
         <td>{user.username}</td>
         <td>{user.role}</td>
-        <td>{user.purchases?.length}</td>
+        <td>{user.purchases === undefined ? "0 purchases" : <>{user.purchases.length} purchases </>}</td>
         <td>
-            {user.role === "ADMIN" ? <button disabled>Promote</button> : <button onClick={() => promoteUser(user.username)}>Promote</button>}
-            <button className='delete-btn' data-testid="delete-btn" onClick={deleteUser}>Delete</button>
+            {user.role === "ADMIN" ? 
+                <button disabled>Promote</button> 
+            :
+                <button data-testid="promote" onClick={() => openModal("promote")}>Promote</button>
+            }
+
+            <button onClick={() => openModal("delete")} className='delete-btn' data-testid="delete-btn">Delete</button>
+            <DeleteModal user={user} act={action} isOpen={isModalOpen} onClose={closeModal} onPromote={promoteUser} onDelete={deleteUser} />
         </td>
     </tr>
   )

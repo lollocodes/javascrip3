@@ -13,10 +13,12 @@ const Header = ({user}) => {
   
   return (
     <header>
-        <h1>Bookster website</h1>
+        <h1 className='logo'>Bookster website</h1>
         <div className='user-info'>
-          <p>Browsing as {user.role} {user.username}</p>
-          <button className='signout-btn' onClick={handleSignOut}>Sign out</button>
+          <p>Browsing as {user?.role} {user?.username}</p>
+          {user.role === "GUEST" ? <button onClick={() => navigate("/")}>Sign in</button> :
+          <button className='signout-btn' onClick={handleSignOut}>Sign out</button>          
+          }
         </div>
     </header>
   )

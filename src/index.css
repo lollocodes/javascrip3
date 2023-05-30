@@ -1,3 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --main-color: #b4b7e6; 
+  --decore-color: #747bd5;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -8,54 +19,125 @@ body {
   background-color: rgb(255, 255, 255);
 }
 
-h1 {
-  color: rgb(60, 66, 146);
-  text-align: center;
-
-
-}
-
-input {
-  margin: 0 auto;
-  display: block;
-
-
-}
-
 p {
 
   font-size: 15px;
   text-align: right;
-  
+}
 
+input {
+  padding: 1em;
+}
+
+.log-in {
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.log-in form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  
+  border-radius: 20px;
+background-color: var(--main-color);
+min-width: 500px;
+min-height: 500px;
+  gap: 1em;
+  
+  background-color: #b4b7e6;
+  
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  
 }
 
 header {
-
+  padding: 2em;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: #f2f2f2;
 }
 
+.logo {
+  color: var(--decore-color);
+  text-align: center;
+  margin: 0 auto;
+}
+
+.user-info {
+  justify-content: flex-end;
+}
+
+button:not(.quantity-btn) {
+  color: rgb(19, 18, 18);
+  background-color:  rgb(255, 255, 255);
+  padding: 0.2em 0.8em;
+  text-align: center;
+  display: inline-block;
+  font-size: 18px;
+  margin: 4px 2px;
+  border: none;
+  border-radius: 12px 12px 12px 12px;
+  box-shadow: 1px 1px 1px 1px #9c9c9c;
+}
+
+.quantity-btn {
+ font-size: 20px;
+ height: 25px;
+ width: 25px;
+}
+
+button[disabled] {
+  background-color: #bdbdbd;
+}
+
+
+.container {
+  margin: 2em 1em;
+}
+
+table {
+  /* margin-left: auto;
+  margin-right: auto;
+  width: 80%; */
+  width: 100%;
+}
+
+.tab-buttons {
+  float: right;
+}
+
+.tab-buttons button {
+  border: none;
+  margin: 0 !important;
+  border-radius: 0;
+  padding: 1em;
+}
+
+.tab-buttons .active {
+  background-color: var(--main-color);
+}
 
 td {
-  background-color: rgb(148, 151, 189);
-  padding: 0.3em;
-  
-
+  background-color: var(--main-color);
+  padding: 0.5em;
 }
-
-button {
-  color: rgb(10, 9, 9);
-  margin: 0.3em;
-  height: 30px;
-  border-radius: 10%;
-  font-size: 20px;
-}
-
-/* .signout-btn {
-  float: right;
-} */
-
 thead {
-  background-color: #5c63c5;
+  background-color: var(--decore-color);
 }
 
 th {

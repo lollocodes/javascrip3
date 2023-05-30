@@ -17,8 +17,10 @@ const GuestView = () => {
 
   return (
     <div>
-        <h1>Guest view</h1>
-        <BooksTable user={user} />
+        <Header user={user}/>
+        <div className="container">
+          <BooksTable user={user} />
+        </div>
     </div>
   )
 }

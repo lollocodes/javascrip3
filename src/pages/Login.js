@@ -40,17 +40,18 @@ const Login = () => {
     }
   
     return (
-      <div data-testid="user-component">
+      <div className='log-in'>
         <form onSubmit={submitHandler}>
           <h2>Login</h2>
           <CredentialComponent onTextChange={handleChange} />
           <p>{infoMessage}</p>
   
           <button type="submit">Login</button>
-          <button type="reset">Cancel</button>
+          <a href="register">No account? Sign up here!</a>
+
+          <button onClick={() => navigate("/guest")}>Continue as guest</button>
         </form>
   
-        <a href="register">No account? Sign up here!</a>
       </div>
     )
 }

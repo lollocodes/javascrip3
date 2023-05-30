@@ -29,14 +29,14 @@ export default function Register () {
   }
 
   return (
-    <div className="App">
+    <div className='log-in'>
       <form onSubmit={submitHandler}>
         <h2>Register</h2>
         <CredentialComponent onTextChange={handleChange} />
         <p>{infoMessage}</p>
         
-        <button type="submit">Register</button>
-        <button type="reset" onClick={() => navigate("/")}>Go back</button>
+        <button type="submit">Register account</button>
+        <a href="/">Already have an account? Sign in here!</a>
       </form>
     </div>
   )

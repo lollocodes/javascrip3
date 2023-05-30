@@ -60,13 +60,13 @@ const Book = ({book, user}) => {
     <tr>
         <td>{book.title}</td>
         <td>{book.author}</td>
-        <td>{ book.quantity == 0 ? "Out of stock" : book.quantity}</td>
+        <td>{ book.quantity == 0 ? "Out of stock" : <> {book.quantity} left </>}</td>
         { 
           user.role=="USER" || user.role=="ADMIN" ? 
           <td>
-            <button onClick={decrement}>-</button>
+            <button className="quantity-btn" onClick={decrement}>-</button>
             {count}
-            <button onClick={increment}>+</button>
+            <button className="quantity-btn" onClick={increment}>+</button>
             <button onClick={handleClick}>Order</button>
           </td>
           :

@@ -4,7 +4,7 @@ const EditBookModal = ({ isOpen, onClose, book, onSave }) => {
     const [title, setTitle] = useState(book.title);
     const [author, setAuthor] = useState(book.author);
     const [quantity, setQuantity] = useState(book.quantity);
-  
+
     const handleNameChange = (e) => {
       setTitle(e.target.value);
     };
@@ -22,7 +22,7 @@ const EditBookModal = ({ isOpen, onClose, book, onSave }) => {
       onSave(updatedBook);
       onClose();
     };
-  
+
     return (
       <div className={`modal ${isOpen ? 'open' : ''}`}>
         <div className="modal-content">
