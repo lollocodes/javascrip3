@@ -9,19 +9,17 @@ jest.mock('../service/adminService', () => ({
 }));
 
 describe('Book component', () => {
-
-
-  test('admin user can delete a book', () => {
+  test('When admin deletes a book the expected function is called with the book to be deleted', () => {
     const book = {
       title: 'Test title',
       author: 'Test Author',
       quantity: 15
     };
-  
+
     const user = {
       role: 'ADMIN'
     };
-    
+
     // Render Book component
     render(<table><tbody><Book book={book} user={user} /></tbody></table>);
 

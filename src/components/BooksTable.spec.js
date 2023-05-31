@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import BooksTable from './BooksTable';
 import adminService from '../service/adminService';
 
@@ -17,7 +17,7 @@ describe('BooksTable', () => {
   });
 
   test('Do not call getUsers when user is not an admin', async () => {
-    const user = { role: 'USER' };
+    const user = { username: 'Billy', role: 'USER' };
     render(<BooksTable user={user} />);
 
     expect(adminService.getUsers).not.toHaveBeenCalled();

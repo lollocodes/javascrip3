@@ -13,6 +13,7 @@ const BooksTable = ({user}) => {
     const [searchFieldBooks, setSearchFieldBooks] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [activeTab, setActiveTab] = useState('books');
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleTabChange = (tab) => {
         setActiveTab(tab);
@@ -40,9 +41,7 @@ const BooksTable = ({user}) => {
     const getAllUsers = async () => {
         if (user.role === "ADMIN") {
             try {
-                let res = await adminService.getUsers();
-                console.log("USER", res);
-                
+                let res = await adminService.getUsers();                
                 if (res.users) {
                     setUsers(res.users)
                     setFilteredUsers(res.users)
@@ -52,7 +51,7 @@ const BooksTable = ({user}) => {
               } catch (error) {
                 console.log(error);
               }
-        }
+        } 
     }
 
     const handleSearch = (e) => {

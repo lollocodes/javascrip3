@@ -1,14 +1,16 @@
 import { render, screen } from '@testing-library/react';
 import Login from './pages/Login';
+import { BrowserRouter } from 'react-router-dom';
 
-const mockedUsedNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({
-   ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockedUsedNavigate,
-}));
+// Mock react router dom
 
-test("username and password field exist", () => {
-  render(<Login />);
+
+test("Username and password field exist", () => {
+  render(
+    <BrowserRouter>
+      <Login />
+    </BrowserRouter>
+  );
 
   const usernameLbl = screen.getByText("Username");
   const passwordLbl = screen.getByText("Password");
@@ -16,6 +18,3 @@ test("username and password field exist", () => {
   expect(usernameLbl).toBeInTheDocument();
   expect(passwordLbl).toBeInTheDocument();
 });
-
-
-
