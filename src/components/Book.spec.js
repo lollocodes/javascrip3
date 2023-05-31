@@ -23,7 +23,7 @@ describe('Book component', () => {
     };
     
     // Render Book component
-    render(<Book book={book} user={user} />);
+    render(<table><tbody><Book book={book} user={user} /></tbody></table>);
 
     // Fire event on delete button
     const deleteButton = screen.getByText('Delete');

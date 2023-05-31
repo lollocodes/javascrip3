@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const AddBookModal = ({ isOpen, onClose, onSave }) => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
-  const [quantity, setQuantity] = useState();
+  const [quantity, setQuantity] = useState(0);
 
   const handleNameChange = (e) => {
     setTitle(e.target.value);

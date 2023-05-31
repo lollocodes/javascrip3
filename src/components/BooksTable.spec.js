@@ -10,7 +10,7 @@ jest.mock('../service/adminService', () => ({
 
 describe('BooksTable', () => {
   test('Call getUsers when user is an admin', async () => {
-    const user = { role: 'ADMIN' };
+    const user = { username: 'Billy', role: 'ADMIN' };
     render(<BooksTable user={user} />);
 
     expect(adminService.getUsers).toHaveBeenCalledTimes(1);

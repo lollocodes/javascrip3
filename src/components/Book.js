@@ -22,20 +22,16 @@ const Book = ({book, user}) => {
   };
 
   const handleClick = async () => {
-    console.log("You added ", count, "of ", book.title)
-
     let body = {title: book.title, quantity: count}
 
     let res = await userService.addBook(body)
     // let data = await res.text();
-    console.log(res)
     // setConfirmationMessage(res.message)
     // alert(confirmationMessage)
   }
 
   const deleteBook = async () => {
     let res = await adminService.deleteBook(book)
-    console.log(res)
   }
 
   const openModal = () => {
@@ -48,12 +44,8 @@ const Book = ({book, user}) => {
 
   const handleSave = (updatedBook) => {
     // Perform save operation
-    console.log(updatedBook)
-    console.log(book.title)
     const body = { previous: {title: book.title}, current: updatedBook }
-    console.log(body)
     let res = adminService.editBook(body);
-    console.log(res)
   };
 
   return (
