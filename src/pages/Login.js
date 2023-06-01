@@ -1,3 +1,9 @@
+/*
+  Login component.
+  Possible improvements: 
+  Component could be made smaller.
+*/
+
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import CredentialComponent from '../components/CredentialComponent.js';

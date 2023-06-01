@@ -1,5 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import userService from '../service/userService';
+/*
+Header component. Takes the prop user that is passed from user or guest view. 
+
+Possible improvements:
+User could be called from a helper function instead of passed from guestView or userView.
+*/
+
+import React from 'react'
 import authService from '../service/authService';
 import { useNavigate } from 'react-router-dom';
 

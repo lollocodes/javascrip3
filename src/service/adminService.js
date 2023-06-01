@@ -1,3 +1,8 @@
+/* 
+Admin service for handling API calls. 
+Exporting functions that perform operations related to books and users.
+*/
+
 import memoryService from "./memoryService.js";
 
 const buildPostFetchOptions = (body) => ({

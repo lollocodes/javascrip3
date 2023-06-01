@@ -1,3 +1,8 @@
+/*
+User story
+As an admin i want to know if there are fields for username and password.
+*/
+
 import { render, screen } from '@testing-library/react';
 import Login from './pages/Login';
 import { BrowserRouter } from 'react-router-dom';

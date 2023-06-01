@@ -1,3 +1,8 @@
+/*
+User story
+As a admin I want the deletebook function to be called when I click on the delete button and the book to be deleted.
+*/
+
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import Book from './Book';

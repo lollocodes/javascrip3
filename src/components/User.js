@@ -1,3 +1,7 @@
+/*
+  The component represents a table row with table data such as username, user role and purchases.
+*/
+
 import React, { useState } from 'react'
 import adminService from '../service/adminService.js';
 import DeleteModal from './DeleteModal.js';

@@ -1,3 +1,10 @@
+/*
+  The component represents a table that maps through a list of either books or users.
+
+  Possible improvements:
+  This component is very large, function and sections could be imported instead to make the file smaller and more readable.
+*/
+
 import React, { useEffect, useState } from 'react'
 import userService from '../service/userService.js';
 import Book from './Book.js';
@@ -13,7 +20,6 @@ const BooksTable = ({user}) => {
     const [searchFieldBooks, setSearchFieldBooks] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [activeTab, setActiveTab] = useState('books');
-    const [errorMessage, setErrorMessage] = useState("");
 
     const handleTabChange = (tab) => {
         setActiveTab(tab);
@@ -150,6 +156,7 @@ const BooksTable = ({user}) => {
                         <input
                             type="text"
                             name="searchBooks"
+                            className='searchBooks'
                             value={searchFieldBooks}
                             onChange={handleSearch}
                             placeholder="Search for a book"

@@ -1,5 +1,10 @@
+/*
+User story
+As an admin i'd like a list of all users to be rendered.
+*/
+
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import BooksTable from './BooksTable';
 import adminService from '../service/adminService';
 

@@ -1,4 +1,12 @@
-import React, { useState } from 'react';
+/*
+Reusable modal component that can be used for confirming delete or promote actions.
+Takes the props: isOpen, onClose, onDelete, act, onPromote, user.
+
+Possible improvements:
+We have several modals in the project, this could be more of a reusable component where props could be passed in to modify the content. 
+*/
+
+import React from 'react';
 
 const DeleteModal = ({ isOpen, onClose, onDelete, act, onPromote, user}) => {
 

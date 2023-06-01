@@ -1,3 +1,11 @@
+/*
+  The component represents a table row with table data such as book's title, author, and quantity.
+
+  Possible improvements: 
+  The component is large and could be split in more components and functions could be imported instead.
+  confirmationMessage state could be used to confirm that an order has been placed.
+*/
+
 import React, {useEffect, useState} from 'react'
 import userService from '../service/userService.js';
 import adminService from '../service/adminService.js';
@@ -25,9 +33,6 @@ const Book = ({book, user}) => {
     let body = {title: book.title, quantity: count}
 
     let res = await userService.addBook(body)
-    // let data = await res.text();
-    // setConfirmationMessage(res.message)
-    // alert(confirmationMessage)
   }
 
   const deleteBook = async () => {
@@ -45,7 +50,7 @@ const Book = ({book, user}) => {
   const handleSave = (updatedBook) => {
     // Perform save operation
     const body = { previous: {title: book.title}, current: updatedBook }
-    let res = adminService.editBook(body);
+    adminService.editBook(body);
   };
 
   return (
@@ -55,18 +60,19 @@ const Book = ({book, user}) => {
         <td>{ book.quantity == 0 ? "Out of stock" : <> {book.quantity} left </>}</td>
         { 
           user.role=="USER" || user.role=="ADMIN" ? 
-          <td>
-            <button className="quantity-btn" onClick={decrement}>-</button>
-            {count}
-            <button className="quantity-btn" onClick={increment}>+</button>
+          <td className='quantity-td'>
+            <div>
+              <button className="quantity-btn" onClick={decrement}>-</button>
+              {count}
+              <button className="quantity-btn" onClick={increment}>+</button>
+            </div>
             <button onClick={handleClick}>Order</button>
           </td>
           :
           <></>
-          
         }
         {  user.role=="ADMIN" ?
-          <td>
+          <td className='action-td'>
             <button onClick={openModal}>Edit</button>
             <EditBookModal isOpen={isModalOpen} onClose={closeModal} book={editedBook} onSave={handleSave} />
             <button onClick={deleteBook}>Delete</button>

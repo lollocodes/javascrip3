@@ -1,6 +1,6 @@
 /* 
 Local memory storage service
-handles communication with session and local storage
+handles communication with local storage
 
 Stores values such as jwt token and other cachable data
 */

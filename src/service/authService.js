@@ -1,3 +1,9 @@
+/**
+ * 
+Authentication service. 
+Exporting functions for authenticated users such as registering new user and logging out a user.
+*/
+
 const buildFetchOptions = (body) => ({
     method: "POST",
     body: JSON.stringify(body),

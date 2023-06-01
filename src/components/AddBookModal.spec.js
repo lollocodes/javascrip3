@@ -1,3 +1,9 @@
+/*
+User story
+As a user I would like the input data to be passed to the addbook function when the add 
+button is pressed.
+*/
+
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import AddBookModal from './AddBookModal';
@@ -26,6 +32,6 @@ describe('AddBookModal', () => {
     fireEvent.click(addButton);
 
     expect(onSaveMock).toHaveBeenCalledTimes(1);
-    // expect(adminService.addBook).toHaveBeenCalledWith(book);
+  
   });
 });

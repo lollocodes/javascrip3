@@ -1,3 +1,8 @@
+/*
+User story
+TEST: As any logged in user i'd like the "logout-button" to log out the user and resend the user to landingpage.
+*/
+
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';

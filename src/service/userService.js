@@ -1,3 +1,8 @@
+/* 
+User service for handling API calls. 
+Exporting functions that perform operations related to books and user profile.
+*/
+
 import memoryService from "./memoryService.js";
 
 const buildPostFetchOptions = (body) => ({

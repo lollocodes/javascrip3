@@ -1,3 +1,7 @@
+/*
+Reusable form component for entering username and password credentials 
+*/
+
 export default function CredentialComponent({onTextChange}) {
     return (
       <div>

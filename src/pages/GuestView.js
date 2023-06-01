@@ -1,3 +1,7 @@
+/*
+User could be called from a helper function instead of fetched from inside guestView or userView.
+*/
+
 import React, { useEffect } from 'react'
 import BooksTable from '../components/BooksTable'
 import Header from '../components/Header'

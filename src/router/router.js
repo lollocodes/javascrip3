@@ -1,3 +1,7 @@
+/*
+Defines and exports the routes in the application. 
+Element represents different pages in the application. 
+*/
 import Login from "../pages/Login.js";
 import Register from "../pages/Register.js";
 import GuestView from "../pages/GuestView.js";

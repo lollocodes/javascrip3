@@ -95,11 +95,38 @@ button:not(.quantity-btn) {
   box-shadow: 1px 1px 1px 1px #9c9c9c;
 }
 
+.searchBooks {
+  margin-right: 2em;
+  min-width: 300px;
+}
+
 .quantity-btn {
  font-size: 20px;
  height: 25px;
  width: 25px;
+ margin: 0 0.2em
 }
+
+
+.quantity-td {
+  display: flex;
+  justify-content: space-around;
+ }
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+ .action-td {
+  text-align: center;
+ }
+
+ .action-td button{
+  margin: 0 0.2em;
+ }
+ 
+
 
 button[disabled] {
   background-color: #bdbdbd;
@@ -124,7 +151,7 @@ table {
 .tab-buttons button {
   border: none;
   margin: 0 !important;
-  border-radius: 0;
+  border-radius: 2px;
   padding: 1em;
 }
 

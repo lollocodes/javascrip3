@@ -1,3 +1,11 @@
+/*
+Reusable modal component that can be used for editing actions.
+Takes the props: isOpen, onClose, book, onSave.
+
+Possible improvements:
+We have several modals in the project, this could be more of a reusable component where props could be passed in to modify the content. 
+*/
+
 import React, { useState } from 'react';
 
 const EditBookModal = ({ isOpen, onClose, book, onSave }) => {
