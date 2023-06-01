@@ -14,9 +14,10 @@ describe('AddBookModal', () => {
     const onCloseMock = jest.fn();
     render(<AddBookModal isOpen={true} onClose={onCloseMock} onSave={onSaveMock} />);
 
-    const titleInput = screen.getByLabelText('Title:');
-    const quantityInput = screen.getByLabelText('Quantity:');
-    const authorInput = screen.getByLabelText('Author:');
+    const titleInput = screen.getByRole('textbox', { name: 'Title:' });
+    const quantityInput = screen.getByRole('textbox', { name: 'Quantity:' });
+    const authorInput = screen.getByRole('textbox', { name: 'Author:' });
+
     const addButton = screen.getByText('Add');
 
     const book = {

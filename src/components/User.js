@@ -11,14 +11,11 @@ const User = ({user}) => {
     const [action, setAction] = useState();
 
     const promoteUser = async () => {
-        console.log(user.username)
         let res = await adminService.promoteUser({username: user.username});
-        console.log(res)
     }
 
     const deleteUser  = async () => {
         let res = await adminService.deleteUser(user)
-        console.log(res)
     } 
 
     const openModal = (btn) => {

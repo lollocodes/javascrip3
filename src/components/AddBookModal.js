@@ -37,18 +37,18 @@ const AddBookModal = ({ isOpen, onClose, onSave }) => {
     <div className={`modal ${isOpen ? 'open' : ''}`}>
       <div className="modal-content">
         <h2>Add Book</h2>
-        <label>
+        <label htmlFor="title">
           Title:
-          <input type="text" value={title} onChange={handleNameChange} />
         </label>
-        <label>
+          <input type="text" name="title" id="title" value={title} onChange={handleNameChange} />
+        <label htmlFor="quantity">
           Quantity:
-          <input type="text" value={quantity} onChange={handleQuantityChange} />
         </label>
-        <label>
+          <input type="text" name="quantity" id="quantity" value={quantity} onChange={handleQuantityChange} />
+        <label htmlFor="author">
           Author:
-          <input type="text" value={author} onChange={handleAuthorChange} />
         </label>
+          <input type="text" name="author" id='author' value={author} onChange={handleAuthorChange} />
         <div className="modal-actions">
           <button onClick={handleAdd}>Add</button>
           <button onClick={onClose}>Cancel</button>

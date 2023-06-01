@@ -15,7 +15,6 @@ const UserView = () => {
       
     useEffect(() => {
         if(!authService.isAuthenticated()) {
-          console.log("You are not logged in")
           navigate("/")
         }
       }, []);
@@ -27,7 +26,6 @@ const UserView = () => {
     const getUser = async () => {
       try {
         let res = await userService.getUser();
-        console.log("USER", res.user);
         
         if (res.user) {
           setUser(res.user);

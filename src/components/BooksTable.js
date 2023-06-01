@@ -67,7 +67,6 @@ const BooksTable = ({user}) => {
             setFilteredBooks(books);
         } else {
             userService.search("books", searchFieldBooks).then(data => {
-                console.log(data)
                 setFilteredBooks(data.books)
             })
         }

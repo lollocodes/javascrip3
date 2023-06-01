@@ -180,6 +180,12 @@ code {
   display: none;
 }
 
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
 .open {
   display: block;
   position: fixed;

@@ -35,18 +35,18 @@ const EditBookModal = ({ isOpen, onClose, book, onSave }) => {
       <div className={`modal ${isOpen ? 'open' : ''}`}>
         <div className="modal-content">
           <h2>Edit Book</h2>
-          <label>
+          <label htmlFor="title">
             Title:
-            <input type="text" value={title} onChange={handleNameChange} />
           </label>
-          <label>
+            <input name="title" type="text" value={title} onChange={handleNameChange} />
+          <label htmlFor="author">
             Author:
-            <input type="text" value={author} onChange={handleAuthorChange} />
             </label>
-          <label>
+            <input name="author" type="text" value={author} onChange={handleAuthorChange} />
+          <label htmlFor="quantity">
             Quantity:
-            <input type="text" value={quantity} onChange={handleQuantityChange} />
           </label>
+            <input name="quantity" type="text" value={quantity} onChange={handleQuantityChange} />
           <div className="modal-actions">
             <button onClick={handleSave}>Save</button>
             <button onClick={onClose}>Cancel</button>

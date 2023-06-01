@@ -19,7 +19,6 @@ const Login = () => {
 
   useEffect(() => {
     if(authService.isAuthenticated()) {
-      console.log("You are already logged in")
       navigate("/user")
     }
   }, []);

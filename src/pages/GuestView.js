@@ -13,7 +13,6 @@ const GuestView = () => {
     const user = {role: "GUEST"}
     // If a user is signed in redirect to user view
     useEffect(() => {
-      console.log(authService.isAuthenticated())
         if(authService.isAuthenticated()) {
             navigate("/user")
         }
