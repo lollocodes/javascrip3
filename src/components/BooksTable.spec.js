@@ -10,7 +10,6 @@ import adminService from '../service/adminService';
 
 jest.mock('../service/adminService', () => ({
   getUsers: jest.fn(() => Promise.resolve({ users: [] })),
-  addBook: jest.fn(() => Promise.resolve()),
 }));
 
 describe('BooksTable', () => {

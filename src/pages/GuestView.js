@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom'
 const GuestView = () => {
     const navigate = useNavigate();
     const user = {role: "GUEST"}
+
     // If a user is signed in redirect to user view
     useEffect(() => {
         if(authService.isAuthenticated()) {

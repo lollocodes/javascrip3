@@ -106,18 +106,5 @@ async function deleteBook(body) {
     return data;
 }
 
-
-/* helper function (not exported), used to parse local jwt token from localStorage */
-function getLocalJWTData() {
-  const localJWTToken = memoryService.getLocalValue('JWT_TOKEN');
-  const tokenParts = localJWTToken.split('.'); // 0 - jwt header, 1 - payload, 2 - signatur
-  const payload = tokenParts[1];
-
-  let payloadData = window.atob(payload);
-  return JSON.parse(payloadData);
-}
-
-
-
 const userService = { promoteUser, deleteUser, getUsers, getUser, editBook, deleteBook, addBook };
 export default userService;

@@ -8,7 +8,7 @@ import React from 'react'
 import { useState } from 'react';
 import CredentialComponent from '../components/CredentialComponent.js';
 import authService from '../service/authService.js';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Register () {
   const [credential, setCredential] = useState({username: '', password: ''});

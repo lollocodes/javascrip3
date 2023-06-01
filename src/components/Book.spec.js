@@ -25,14 +25,11 @@ describe('Book component', () => {
       role: 'ADMIN'
     };
 
-    // Render Book component
     render(<table><tbody><Book book={book} user={user} /></tbody></table>);
 
-    // Fire event on delete button
     const deleteButton = screen.getByText('Delete');
     fireEvent.click(deleteButton);
 
-    // adminService.deleteBook() is called with a book object
     expect(adminService.deleteBook).toHaveBeenCalledWith(book);
   });
 });

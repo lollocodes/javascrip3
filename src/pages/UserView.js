@@ -30,7 +30,7 @@ const UserView = () => {
         if (res.user) {
           setUser(res.user);
         } else {
-          console.log("User data not found.");
+          console.log("User data not found");
         }
       } catch (error) {
         console.log(error);

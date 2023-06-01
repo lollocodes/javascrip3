@@ -10,7 +10,6 @@ import CredentialComponent from '../components/CredentialComponent.js';
 import authService from '../service/authService.js';
 import memoryService from '../service/memoryService.js';
 import { useNavigate } from 'react-router-dom';
-import userService from '../service/userService.js';
 
 const Login = () => {
     const [credential, setCredential] = useState({username: '', password: ''});

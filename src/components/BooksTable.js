@@ -52,7 +52,7 @@ const BooksTable = ({user}) => {
                     setUsers(res.users)
                     setFilteredUsers(res.users)
                 } else {
-                  console.log("User data not found.");
+                  console.log("User data not found");
                 }
               } catch (error) {
                 console.log(error);
@@ -124,7 +124,7 @@ const BooksTable = ({user}) => {
                 <>
                     {user.role === "ADMIN" ?
                         <>
-                        <input name="searchUsers" type="text" placeholder='Search user' onChange={handleSearchUsers} />
+                        <input name="searchUsers" className='searchBooks' type="text" placeholder='Search user' onChange={handleSearchUsers} />
                         <table>
                             <thead>
                                 <tr>
