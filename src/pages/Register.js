@@ -8,11 +8,12 @@ import React from 'react'
 import { useState } from 'react';
 import CredentialComponent from '../components/CredentialComponent.js';
 import authService from '../service/authService.js';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function Register () {
   const [credential, setCredential] = useState({username: '', password: ''});
   const [infoMessage, setInfoMessage] = useState('');
+  const navigate = useNavigate();
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -25,7 +26,7 @@ export default function Register () {
     } else {
       let text = await res.text();
       setInfoMessage(text);
-      setTimeout(() => <Navigate to="/" />, 3000);
+      setTimeout(() => navigate("/user"), 1000);
     }
   }
 
